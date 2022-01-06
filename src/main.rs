@@ -1,6 +1,3 @@
-// use curl::http;
-// use serde_json::Value;
-
 use std::env;
 
 mod card;
@@ -14,28 +11,6 @@ use colours::colours;
 
 // output card
 fn card () {
-  // let url = "https://iammatthias.com/api/feed/";
-  // let resp = http::handle()
-  //   .get(url)
-  //   .exec()
-  //   .unwrap_or_else(|e| {
-  //     panic!("Failed to get {}; error is {}", url, e);
-  // });
-
-  // if resp.get_code() != 200 {
-  //   println!("Unable to handle HTTP response code {}", resp.get_code());
-  //     return;
-  // }
-
-  // let body = std::str::from_utf8(resp.get_body()).unwrap_or_else(|e| {
-  //   panic!("Failed to parse response from {}; error is {}", url, e);
-  // });
-
-  // let json: Value = serde_json::from_str(body).unwrap_or_else(|e| {
-  //   panic!("Failed to parse json; error is {}", e);
-  // });
-    
-
   let card = Card {
     name: "Matthias Jordan",
     title: "Growth",
