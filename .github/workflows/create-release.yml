@@ -46,6 +46,7 @@ jobs:
   publish:
     name: Publish to npm
     runs-on: ubuntu-latest
+    environment: production
     needs: build
     steps:
       - uses: actions/checkout@v1
