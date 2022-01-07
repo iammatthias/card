@@ -1,3 +1,7 @@
+This only works locally, currently. It breaks after compiling, and won't run in node. PR's welcome.
+
+---
+
 # what
 
 Rustlang CLI targeting wasm. runs on node and is deployed with npx/npm.
