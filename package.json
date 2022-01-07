@@ -1,6 +1,6 @@
 {
   "name": "iammatthias",
-  "version": "0.6.54",
+  "version": "0.6.56",
   "description": "npx business card",
   "main": "index.js",
   "bin": {
@@ -11,7 +11,7 @@
     "cargo:build": "cargo build --target=wasm32-unknown-emscripten --release",
     "wasm_pack:build": "cargo install wasm-pack && wasm-pack build --target nodejs --release",
     "mv": "mv ./target/wasm32-unknown-emscripten/release/card.* .",
-    "mv_wasm": "mv ./pkg/card.* .",
+    "mv_wasm": "mv ./pkg/card* .",
     "build": "yarn wasm_pack:build && yarn mv_wasm",
     "start": "node card.js"
   },
