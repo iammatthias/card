@@ -17,15 +17,8 @@ jobs:
           toolchain: nightly
           override: true
           components: rustfmt, clippy
-      - name: Add wasm32-unknown-emscripten Target
-        run: |
-          rustup target add wasm32-unknown-emscripten
-      - name: Setup emsdk
-        uses: mymindstorm/setup-emsdk@v11
-        with:
-          version: 2.0.0
-      - name: Verify emsdk
-        run: emcc -v
+      - name: wasm-pack-action
+        uses: jetli/wasm-pack-action@v0.3.0
       - name: Setup node
         uses: actions/setup-node@v2
       - name: Build
@@ -52,6 +45,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
+        with:
+          node-version: "17"
+          cache: "npm"
       - uses: actions/download-artifact@v2
         with:
           name: card
