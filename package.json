@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "wasm_pack:build": "wasm-pack build --target no-modules --mode no-install --release",
+    "wasm_pack:build": "wasm-pack build --target no-modules --release",
     "mv": "mv ./pkg/card* .",
     "build": "yarn wasm_pack:build && yarn mv",
     "start": "node card.js"
