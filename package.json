@@ -1,6 +1,6 @@
 {
   "name": "iammatthias",
-  "version": "0.6.3",
+  "version": "0.6.4",
   "description": "npx business card",
   "main": "index.js",
   "bin": {
