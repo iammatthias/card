@@ -38,9 +38,11 @@ jobs:
         with:
           name: card
           path: |
-            ./*.js
-            ./*.json
-            ./*.wasm
+            ./card_bg.wasm
+            ./card_bg.wasm.d.ts
+            ./card.d.ts
+            ./card.js
+            ./package.json
             LICENSE
             README.md
   publish:
