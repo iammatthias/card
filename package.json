@@ -8,8 +8,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "mv": "mv ./target/wasm32-unknown-unknown/release/card.* .",
-    "build": "cargo build --target=wasm32-unknown-unknown --release && yarn mv",
+    "build": "cargo build --target=wasm32-unknown-unknown --release && mv ./target/wasm32-unknown-unknown/release/card.* .",
     "start": "node card.js"
   },
   "author": "iammatthias",

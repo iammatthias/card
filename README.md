@@ -9,19 +9,19 @@ All content is dynamically pulled from a json api
 ## Building
 
 ```
-cargo build --target=wasm32-unknown-emscripten --release
+cargo build --target=wasm32-unknown-unknown --release
 ```
 
 This moves files into:
 
 ```
-./target/wasm32-unknown-emscripten/release/
+./target/wasm32-unknown-unknown/release/
 ```
 
 Copy generated `card.js` and `card.wasm` into the root so the [bin](bin.js) can read it:
 
 ```
-mv ./target/wasm32-unknown-emscripten/release/card.* .
+mv ./target/wasm32-unknown-unknown/release/card.* .
 ```
 
 Done!
