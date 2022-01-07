@@ -3,11 +3,6 @@ extern crate ansi_term;
 use ansi_term::Colour::Fixed;
 
 use serde::{Deserialize, Serialize};
-use std::env;
-
-mod colours;
-
-use colours::colours;
 
 // general metadata
 #[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
@@ -136,29 +131,11 @@ async fn feed() {
 }
 
 #[tokio::main]
-async fn card() {
+pub async fn card() {
   metadata().await;
   feed().await;
 }
 
-fn main() {
-  // collect args
-  let args: Vec<String> = env::args().collect();
-
-  match args.len() {
-    1 => {
-      card();
-    }
-    2 => {
-      let arg = &args[1];
-      match arg.as_str() {
-        "colours" => colours(),
-        "colors" => colours(),
-        _ => println!("This is not a valid argument. please use none or `colours`"),
-      }
-    }
-    _ => {
-      card();
-    }
-  }
+pub fn main() {
+  card();
 }

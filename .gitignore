@@ -1,4 +1,5 @@
 /target
+/pkg
 
 # node
 node_modules
