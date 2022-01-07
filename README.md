@@ -14,8 +14,6 @@ All content is dynamically pulled from a json api
 npx iammatthias
 ```
 
-Scripts are also discoverable in [package.json](package.json#L9)
-
 ## License
 
 MIT

@@ -3,6 +3,7 @@ extern crate ansi_term;
 use ansi_term::Colour::Fixed;
 
 use serde::{Deserialize, Serialize};
+use wasm_bindgen::prelude::*;
 
 // general metadata
 #[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
@@ -131,11 +132,12 @@ async fn feed() {
 }
 
 #[tokio::main]
-pub async fn card() {
+async fn card() {
   metadata().await;
   feed().await;
 }
 
+#[wasm_bindgen(start)]
 pub fn main() {
   card();
 }
