@@ -54,7 +54,6 @@ fn print_metadata(data: Metadata) {
   println!("{}{}", edge, " ");
 }
 
-#[tokio::main]
 async fn metadata() {
   let url = "https://iammatthias.com/api/feed/";
   let client = reqwest::Client::new();
@@ -116,7 +115,6 @@ fn print_content(items: Vec<&Item>) {
   }
 }
 
-#[tokio::main]
 async fn feed() {
   let url = "https://iammatthias.com/api/feed/json/";
   let client = reqwest::Client::new();
@@ -139,12 +137,8 @@ async fn feed() {
 
 #[tokio::main]
 async fn card() {
-  tokio::task::spawn_blocking(|| {
-    metadata();
-    feed();
-  })
-  .await
-  .expect("Task panicked")
+  metadata().await;
+  feed().await;
 }
 
 fn main() {
