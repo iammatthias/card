@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "cargo build --target=wasm32-unknown-unknown --release && mv ./target/wasm32-unknown-unknown/release/card.* .",
+    "build": "cargo build --target=wasm32-unknown-emscripten --release && mv ./target/wasm32-unknown-emscripten/release/card.* .",
     "start": "node card.js"
   },
   "author": "iammatthias",
