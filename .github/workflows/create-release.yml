@@ -17,15 +17,9 @@ jobs:
           toolchain: stable
           override: true
           components: rustfmt, clippy
-      - name: Add wasm32-unknown-emscripten Target
+      - name: Add wasm32-unknown-unknown Target
         run: |
-          rustup target add wasm32-unknown-emscripten
-      - name: Setup emsdk
-        uses: mymindstorm/setup-emsdk@v11
-        with:
-          version: 2.0.0
-      - name: Verify emsdk
-        run: emcc -v
+          rustup target add wasm32-unknown-unknown
       - name: Setup node
         uses: actions/setup-node@v2
       - name: Build
