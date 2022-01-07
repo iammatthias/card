@@ -137,10 +137,14 @@ async fn feed() {
   };
 }
 
-// output card
-fn card() {
-  metadata();
-  feed();
+#[tokio::main]
+async fn card() {
+  tokio::task::spawn_blocking(|| {
+    metadata();
+    feed();
+  })
+  .await
+  .expect("Task panicked")
 }
 
 fn main() {
