@@ -1,8 +1,10 @@
 # what
 
-rustlang cli targetting wasm. runs on node and is deployed with npx/npm.
+Rustlang CLI targeting wasm. runs on node and is deployed with npx/npm.
 
-all content is dynamically pulled from a json api
+All content is dynamically pulled from a json api
+
+> This is provided `as is`. This is my first Rust project, and I am sure there are better ways of doing things.
 
 ## Building
 

@@ -2,7 +2,6 @@ extern crate ansi_term;
 
 use ansi_term::Colour::Fixed;
 
-use reqwest;
 use serde::{Deserialize, Serialize};
 use std::env;
 
@@ -30,13 +29,22 @@ fn print_metadata(data: Metadata) {
   let fixed_pink = Fixed(pink);
   let fixed_blue_bold = fixed_blue.bold();
   let fixed_pink_bold = fixed_pink.bold();
-  let top = format!("{}{}", fixed_pink.paint("╭"), fixed_pink.paint(["─"; 64].join("")));
+  let top = format!(
+    "{}{}",
+    fixed_pink.paint("╭"),
+    fixed_pink.paint(["─"; 64].join(""))
+  );
   let space = format!("{}", [" "; 4].join(""));
   let edge = fixed_pink.paint("│");
-  
   println!("{}", top);
   println!("{}{}", edge, " ");
-  println!("{}{}{} / {}", edge, space, fixed_blue_bold.paint(data.name), fixed_pink_bold.paint(data.handle));
+  println!(
+    "{}{}{} / {}",
+    edge,
+    space,
+    fixed_blue_bold.paint(data.name),
+    fixed_pink_bold.paint(data.handle)
+  );
   println!("{}{}", edge, " ");
   println!("{}{}{} @ {}", edge, space, data.role, data.company);
   println!("{}{}", edge, " ");
@@ -48,27 +56,23 @@ fn print_metadata(data: Metadata) {
 
 #[tokio::main]
 async fn metadata() {
-    let url = "https://iammatthias.com/api/feed/";
-    let client = reqwest::Client::new();
-    let response = client
-        .get(url)
-        .send()
-        .await
-        .unwrap();
-    match response.status() {
-        reqwest::StatusCode::OK => {
-            match response.json::<Metadata>().await {
-                Ok(parsed) =>  print_metadata(parsed),
-                Err(_) => println!("Hm, the response didn't match the shape we expected.")
-            };
-        }
-        reqwest::StatusCode::UNAUTHORIZED => {
-            println!("Need to grab a new token");
-        }
-        other => {
-            panic!("Uh oh! Something unexpected happened: {:?}", other);
-        }
-    };
+  let url = "https://iammatthias.com/api/feed/";
+  let client = reqwest::Client::new();
+  let response = client.get(url).send().await.unwrap();
+  match response.status() {
+    reqwest::StatusCode::OK => {
+      match response.json::<Metadata>().await {
+        Ok(parsed) => print_metadata(parsed),
+        Err(_) => println!("Hm, the response didn't match the shape we expected."),
+      };
+    }
+    reqwest::StatusCode::UNAUTHORIZED => {
+      println!("Need to grab a new token");
+    }
+    other => {
+      panic!("Uh oh! Something unexpected happened: {:?}", other);
+    }
+  };
 }
 
 // recent content
@@ -114,36 +118,32 @@ fn print_content(items: Vec<&Item>) {
 
 #[tokio::main]
 async fn feed() {
-    let url = "https://iammatthias.com/api/feed/json/";
-    let client = reqwest::Client::new();
-    let response = client
-        .get(url)
-        .send()
-        .await
-        .unwrap();
-    match response.status() {
-        reqwest::StatusCode::OK => {
-            match response.json::<Feed>().await {
-                Ok(parsed) =>  print_feed(parsed),
-                Err(_) => println!("Hm, the response didn't match the shape we expected.")
-            };
-        }
-        reqwest::StatusCode::UNAUTHORIZED => {
-            println!("Need to grab a new token");
-        }
-        other => {
-            panic!("Uh oh! Something unexpected happened: {:?}", other);
-        }
-    };
+  let url = "https://iammatthias.com/api/feed/json/";
+  let client = reqwest::Client::new();
+  let response = client.get(url).send().await.unwrap();
+  match response.status() {
+    reqwest::StatusCode::OK => {
+      match response.json::<Feed>().await {
+        Ok(parsed) => print_feed(parsed),
+        Err(_) => println!("Hm, the response didn't match the shape we expected."),
+      };
+    }
+    reqwest::StatusCode::UNAUTHORIZED => {
+      println!("Need to grab a new token");
+    }
+    other => {
+      panic!("Uh oh! Something unexpected happened: {:?}", other);
+    }
+  };
 }
 
 // output card
-fn card () {
+fn card() {
   metadata();
   feed();
 }
 
-fn main () {
+fn main() {
   // collect args
   let args: Vec<String> = env::args().collect();
 
